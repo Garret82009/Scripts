@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Magic 8-Ball responses
+responses=("Yes" "No" "Ask again later" "Definitely" "Not looking good" "Outlook good" "Maybe" "Absolutely" "Don't count on it" "Very likely")
+
+# Prompt the user to ask a question
+echo "Ask the Magic 8-Ball a yes/no question:"
+read question
+
+# Randomly select a response
+random_index=$((RANDOM % ${#responses[@]}))
+echo "The Magic 8-Ball says: ${responses[$random_index]}"
+

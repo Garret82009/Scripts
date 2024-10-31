@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Number Guessing Game
+# randomly selects a number, and the player tries to guess it.
+
+# generate a random number between 1 and 100
+RANDOM_NUMBER=$(( $RANDOM % 100 + 1 ))
+
+# Welcome message
+echo "Welcome to the Number Guessing Game, Made by Garret!"
+echo "I have selected a random number between 1 and 100."
+echo "Can you guess the number?"
+
+ Initialize variables
+ATTEMPTS=0
+GUESS=0
+
+# Loop until the player guesses the correct number
+while [[ $GUESS -ne $RANDOM_NUMBER ]]
+do
+  read -p "Enter your guess: " GUESS
+
+  # Check if the guess is a number
+  if ! [[ "$GUESS" =~ ^[0-9]+$ ]]
+  then
+    echo "Please enter a valid number."
+    continue
+  fi
+
+  ATTEMPTS=$((ATTEMPTS + 1))
+
+  # Check if the guess is correct, too high, or too low
+  if [[ $GUESS -lt $RANDOM_NUMBER ]]
+  then
+    echo "Too low! Try again."
+  elif [[ $GUESS -gt $RANDOM_NUMBER ]]
+  then
+    echo "Too high! Try again."
+  else
+    echo "Congratulations! You've guessed the number in $ATTEMPTS attempts."
+  fi
+done
+
+echo "Thanks for playing!"
+
